@@ -10,13 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -78,7 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
             mAuth.createUserWithEmailAndPassword(emailValue, passwordValue)
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            //update DisplayName of the user
+
                             sendEmailVerification();
                             final FirebaseUser user = mAuth.getCurrentUser();
                             String userID = user.getUid();
@@ -91,6 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
                             documentReference.set(userDetails).addOnSuccessListener(aVoid -> Log.d(TAG, "User profile updated."))
                                     .addOnFailureListener(e -> Log.d(TAG, "User profile not updated."));
 
+                            //update DisplayName of the user
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                     .setDisplayName(userNameValue).build();
                             user.updateProfile(profileUpdates)
@@ -124,12 +120,9 @@ public class SignUpActivity extends AppCompatActivity {
         // Send verification email
         final FirebaseUser user = mAuth.getCurrentUser();
         user.sendEmailVerification()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // Email sent
-                        Log.d(TAG, "Verification email sent");
-                    }
+                .addOnCompleteListener(this, task -> {
+                    // Email sent
+                    Log.d(TAG, "Verification email sent");
                 });
     }
 }
