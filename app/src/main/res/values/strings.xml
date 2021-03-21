@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Liqmoney</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="example_email">example@email.com</string>
+    <string name="password">Password</string>
+    <string name="stars">************</string>
+    <string name="reset">Reset</string>
+    <string name="namaste">Namaste!</string>
 </resources>

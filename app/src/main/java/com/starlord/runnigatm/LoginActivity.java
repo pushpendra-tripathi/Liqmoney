@@ -21,7 +21,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
     private Button signInBtn;
-    private TextView signInText, resetText;
+    private TextView resetText;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
 
@@ -29,19 +29,27 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
 
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
         email = findViewById(R.id.email_singIn);
         password = findViewById(R.id.password_signIn);
         signInBtn = findViewById(R.id.signIn);
-        signInText = findViewById(R.id.signUp_tv);
         resetText = findViewById(R.id.reset_tv);
 
         signInBtn.setOnClickListener(view -> {
             String emailValue = email.getText().toString().trim();
             String passwordValue = password.getText().toString().trim();
-            validateInputs(emailValue, passwordValue);
+
+            if (TextUtils.isEmpty(emailValue)) {
+                email.setError("Required field");
+                return;
+            }
+            if (TextUtils.isEmpty(passwordValue)) {
+                password.setError("Required field");
+                return;
+            }
             progressDialog.setMessage("Processing...");
             progressDialog.show();
 
@@ -66,29 +74,13 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this,
                                     "Login failed, please check your internet connection",
                                     Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
                         }
                     });
 
         });
 
         resetText.setOnClickListener(view -> resetDialog());
-
-        signInText.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-            startActivity(intent);
-            finish();
-        });
-    }
-
-    private void validateInputs(String emailValue, String passwordValue) {
-        if (TextUtils.isEmpty(emailValue)) {
-            email.setError("Required field");
-            return;
-        }
-        if (TextUtils.isEmpty(passwordValue)) {
-            password.setError("Required field");
-            return;
-        }
     }
 
     @Override
