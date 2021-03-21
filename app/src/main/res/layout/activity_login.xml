@@ -4,99 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    android:gravity="center_vertical"
     android:orientation="vertical"
     android:padding="15dp"
-    android:gravity="center_vertical">
+    tools:context=".LoginActivity">
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="73dp"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
         android:text="Access your money \nanywhere!"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/black"
         android:textSize="23sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="30dp"/>
+        android:textStyle="bold" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <EditText
                     android:id="@+id/email_singIn"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:layout_height="wrap_content"
                     android:backgroundTint="#DAE0E2"
                     android:hint="Email Address"
                     android:inputType="textEmailAddress"
                     android:padding="12dp"
                     android:paddingLeft="20dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:passwordToggleEnabled="true"
-                    app:hintEnabled="false">
+                    app:hintEnabled="false"
+                    app:passwordToggleEnabled="true">
+
                     <EditText
                         android:id="@+id/password_signIn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="#DAE0E2"
                         android:layout_margin="10dp"
+                        android:backgroundTint="#DAE0E2"
                         android:hint="Password"
                         android:inputType="textPassword"
                         android:padding="12dp"
                         android:paddingLeft="20dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/signIn"
                     android:layout_width="147dp"
                     android:layout_height="45dp"
-                    android:background="@color/design_default_color_primary"
                     android:layout_margin="15dp"
+                    android:background="@color/design_default_color_primary"
                     android:text="Sign In"
                     android:textAllCaps="false"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@android:color/white"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/reset_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:id="@+id/reset_tv"
                     android:gravity="center"
                     android:text="Reset password"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/signUp_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="15dp"
-                    android:id="@+id/signUp_tv"
                     android:gravity="center"
                     android:text="Not have an account? Sign Up"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@android:color/black"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

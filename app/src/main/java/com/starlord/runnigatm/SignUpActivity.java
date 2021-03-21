@@ -24,7 +24,7 @@ import java.util.Map;
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
-    private EditText userName, email, password;
+    private EditText firstName, lastName, email, password;
     private Button signUpBtn;
     private TextView signUpText;
     private FirebaseAuth mAuth;
@@ -39,24 +39,31 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(this);
-        userName = findViewById(R.id.userName);
+        firstName = findViewById(R.id.firstName);
+        lastName = findViewById(R.id.lastName);
         email = findViewById(R.id.email_singUp);
         password = findViewById(R.id.password_signUp);
         signUpBtn = findViewById(R.id.signUp);
         signUpText = findViewById(R.id.signIn_tv);
 
+        // Checking if the user is already signed in
         if (mAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
 
         signUpBtn.setOnClickListener(view -> {
-            final String userNameValue = userName.getText().toString().trim();
+            final String firstNameValue = firstName.getText().toString().trim();
+            final String lastNameValue = lastName.getText().toString().trim();
             String emailValue = email.getText().toString().trim();
             String passwordValue = password.getText().toString().trim();
 
-            if (TextUtils.isEmpty(userNameValue)) {
-                userName.setError("Required field");
+            if (TextUtils.isEmpty(firstNameValue)) {
+                firstName.setError("Required field");
+                return;
+            }
+            if (TextUtils.isEmpty(lastNameValue)) {
+                lastName.setError("Required field");
                 return;
             }
             if (TextUtils.isEmpty(emailValue)) {
@@ -75,12 +82,14 @@ public class SignUpActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             sendEmailVerification();
+
+                            //Sending user details to Fire Store collection named users
                             final FirebaseUser user = mAuth.getCurrentUser();
                             String userID = user.getUid();
                             Map<String, Object> userDetails = new HashMap<>();
-                            userDetails.put("name", userNameValue);
+                            userDetails.put("firstName", firstNameValue);
+                            userDetails.put("lastName", lastNameValue);
                             userDetails.put("email", emailValue);
-                            userDetails.put("phone", "0987654321");
 
                             DocumentReference documentReference = db.collection("users").document(userID);
                             documentReference.set(userDetails).addOnSuccessListener(aVoid -> Log.d(TAG, "User profile updated."))
@@ -88,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                             //update DisplayName of the user
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(userNameValue).build();
+                                    .setDisplayName(firstNameValue).build();
                             user.updateProfile(profileUpdates)
                                     .addOnCompleteListener(task1 -> {
                                         if (task1.isSuccessful()) {
@@ -98,7 +107,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                             //After user registration
                             final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            Toast.makeText(getApplicationContext(), "Sign Up Successful", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                             startActivity(intent);
                             finish();
@@ -123,6 +131,9 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     // Email sent
                     Log.d(TAG, "Verification email sent");
+                    Toast.makeText(getApplicationContext(),
+                            "Sign Up Successful and verification link is send to the registered email.",
+                            Toast.LENGTH_LONG).show();
                 });
     }
 }

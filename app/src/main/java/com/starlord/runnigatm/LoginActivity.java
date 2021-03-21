@@ -12,12 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -52,12 +48,24 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(emailValue, passwordValue).
                     addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "You signed in successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            finish();
+
+                            if (mAuth.getCurrentUser().isEmailVerified()) {
+//                                Toast.makeText(LoginActivity.this,
+//                                "You signed in successfully",
+//                                 Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
+                            } else {
+                                Toast.makeText(LoginActivity.this,
+                                        "User email is not verified, please verify the email and SigIn again.",
+                                        Toast.LENGTH_LONG).show();
+                            }
                             progressDialog.dismiss();
+
                         } else {
-                            Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,
+                                    "Login failed, please check your internet connection",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     });
 
