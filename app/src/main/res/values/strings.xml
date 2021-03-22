@@ -9,4 +9,6 @@
     <string name="stars">************</string>
     <string name="reset">Reset</string>
     <string name="namaste">Namaste!</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
 </resources>
