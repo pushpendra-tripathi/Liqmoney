@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
@@ -24,12 +26,13 @@ public class LoginActivity extends AppCompatActivity {
     private TextView resetText;
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
+    private TextView cancelText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
@@ -37,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password_signIn);
         signInBtn = findViewById(R.id.signIn);
         resetText = findViewById(R.id.reset_tv);
+        cancelText = findViewById(R.id.signIn_cancel);
 
         signInBtn.setOnClickListener(view -> {
             String emailValue = email.getText().toString().trim();
@@ -81,6 +85,12 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         resetText.setOnClickListener(view -> resetDialog());
+
+        cancelText.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     @Override

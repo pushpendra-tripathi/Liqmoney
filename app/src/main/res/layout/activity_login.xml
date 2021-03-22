@@ -146,7 +146,7 @@
             <Button
                 android:id="@+id/signIn"
                 android:layout_width="247dp"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="65dp"
                 android:background="@drawable/button_design"
@@ -155,6 +155,17 @@
                 android:textAllCaps="false"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/signIn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/text_secondary"
                 android:textStyle="bold" />
 
         </LinearLayout>

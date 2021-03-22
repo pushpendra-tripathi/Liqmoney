@@ -20,13 +20,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
     private EditText firstName, lastName, email, password;
     private Button signUpBtn;
-    private TextView signUpText;
+    private TextView cancelText;
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
     private ProgressDialog progressDialog;
@@ -35,7 +36,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -45,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
         email = findViewById(R.id.email_singUp);
         password = findViewById(R.id.password_signUp);
         signUpBtn = findViewById(R.id.signUp);
-        signUpText = findViewById(R.id.signIn_tv);
+        cancelText = findViewById(R.id.signup_cancel);
 
         // Checking if the user is already signed in
         if (mAuth.getCurrentUser() != null) {
@@ -118,8 +119,8 @@ public class SignUpActivity extends AppCompatActivity {
                     });
         });
 
-        signUpText.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+        cancelText.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
             startActivity(intent);
             finish();
         });

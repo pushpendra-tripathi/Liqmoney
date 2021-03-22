@@ -45,6 +45,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -61,13 +64,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="10dp"
                 android:backgroundTint="#DAE0E2"
-                android:hint="First Name"
+                android:cursorVisible="false"
                 android:inputType="text"
-                android:padding="12dp"
-                android:paddingStart="20dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:paddingStart="15dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="12dp"
+                android:shadowColor="@color/blue_dark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/blue"
+                android:textColorHint="#003CFF"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -83,13 +92,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="10dp"
                 android:backgroundTint="#DAE0E2"
-                android:hint="Last Name"
+                android:cursorVisible="false"
                 android:inputType="text"
-                android:padding="12dp"
-                android:paddingStart="20dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:paddingStart="15dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="12dp"
+                android:shadowColor="@color/blue_dark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/blue"
+                android:textColorHint="#003CFF"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -105,13 +120,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="10dp"
                 android:backgroundTint="#DAE0E2"
-                android:hint="Email Address"
+                android:cursorVisible="false"
                 android:inputType="textEmailAddress"
-                android:padding="12dp"
-                android:paddingStart="20dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:paddingStart="15dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="12dp"
+                android:shadowColor="@color/blue_dark"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/blue"
+                android:textColorHint="#003CFF"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -146,21 +167,24 @@
             <Button
                 android:id="@+id/signUp"
                 android:layout_width="247dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="35dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="65dp"
                 android:background="@drawable/button_design"
+                android:elevation="5dp"
                 android:text="@string/sign_up"
                 android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/signIn_tv"
+                android:id="@+id/signup_cancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:gravity="center"
-                android:text="Already have an account? Login"
+                android:text="@string/cancel"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/text_secondary"
                 android:textStyle="bold" />
