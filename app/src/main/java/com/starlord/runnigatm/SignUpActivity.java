@@ -25,9 +25,7 @@ import java.util.Objects;
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
-    private EditText firstName, lastName, email, password;
-    private Button signUpBtn;
-    private TextView cancelText;
+    private EditText firstName, lastName, email, password, pin;
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
     private ProgressDialog progressDialog;
@@ -45,8 +43,9 @@ public class SignUpActivity extends AppCompatActivity {
         lastName = findViewById(R.id.lastName);
         email = findViewById(R.id.email_singUp);
         password = findViewById(R.id.password_signUp);
-        signUpBtn = findViewById(R.id.signUp);
-        cancelText = findViewById(R.id.signup_cancel);
+        pin = findViewById(R.id.pin);
+        Button signUpBtn = findViewById(R.id.signUp);
+        TextView cancelText = findViewById(R.id.signup_cancel);
 
         // Checking if the user is already signed in
         if (mAuth.getCurrentUser() != null) {
@@ -59,6 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
             final String lastNameValue = lastName.getText().toString().trim();
             String emailValue = email.getText().toString().trim();
             String passwordValue = password.getText().toString().trim();
+            String pinValue = pin.getText().toString().trim();
 
             if (TextUtils.isEmpty(firstNameValue)) {
                 firstName.setError("Required field");
@@ -74,6 +74,10 @@ public class SignUpActivity extends AppCompatActivity {
             }
             if (TextUtils.isEmpty(passwordValue)) {
                 password.setError("Required field");
+                return;
+            }
+            if (TextUtils.isEmpty(pinValue)) {
+                pin.setError("Required field");
                 return;
             }
             progressDialog.setMessage("Please wait...");
@@ -92,6 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
                             userDetails.put("firstName", firstNameValue);
                             userDetails.put("lastName", lastNameValue);
                             userDetails.put("email", emailValue);
+                            userDetails.put("pin", pinValue);
 
                             DocumentReference documentReference = db.collection("users").document(userID);
                             documentReference.set(userDetails).addOnSuccessListener(aVoid -> Log.d(TAG, "User profile updated."))

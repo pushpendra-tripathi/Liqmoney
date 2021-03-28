@@ -43,4 +43,5 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="pin_code">PIN Code</string>
 </resources>

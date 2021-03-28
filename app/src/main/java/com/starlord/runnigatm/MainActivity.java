@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
     ImageView profileImage;
 
     @SuppressLint("NonConstantResourceId")
@@ -27,18 +26,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        MaterialToolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         profileImage = findViewById(R.id.profile_image);
         drawerLayout = findViewById(R.id.activity_main);
-//        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
-//                R.string.open, R.string.close);
-//
-//        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-//        actionBarDrawerToggle.syncState();
-
-
         navigationView = findViewById(R.id.nv);
 
         profileImage.setOnClickListener(v -> openDrawer());
@@ -71,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 
             return true;
-
         });
     }
 
