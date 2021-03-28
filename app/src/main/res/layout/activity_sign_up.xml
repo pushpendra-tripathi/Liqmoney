@@ -153,14 +153,15 @@
                 android:cursorVisible="false"
                 android:inputType="number"
                 android:paddingStart="15dp"
-                android:paddingTop="7dpdp"
+                android:paddingTop="7dp"
                 android:paddingEnd="12dp"
                 android:paddingBottom="7dp"
                 android:shadowColor="@color/blue_dark"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/blue"
                 android:textColorHint="#003CFF"
-                tools:ignore="RtlSymmetry,TextFields" />
+                tools:ignore="RtlSymmetry,TextFields"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:layout_width="match_parent"
