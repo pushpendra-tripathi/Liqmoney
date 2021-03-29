@@ -44,4 +44,12 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="pin_code">PIN Code</string>
+    <string name="liquid_money">Liquid Money</string>
+    <string name="hard_money">Hard Money</string>
+    <string name="hello_bose">Hello, Bose!</string>
+    <string name="last_transaction">Last Transaction</string>
+    <string name="date">dd/mm/yyyy</string>
+    <string name="amount">Amount</string>
+    <string name="status">Status</string>
+    <string name="see_more"><u>See more...</u></string>
 </resources>
