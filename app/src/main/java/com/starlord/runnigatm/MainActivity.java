@@ -8,8 +8,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -30,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
         profileImage = findViewById(R.id.profile_image);
         drawerLayout = findViewById(R.id.activity_main);
         navigationView = findViewById(R.id.nv);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.blue_dark));
+        }
 
         profileImage.setOnClickListener(v -> openDrawer());
 
