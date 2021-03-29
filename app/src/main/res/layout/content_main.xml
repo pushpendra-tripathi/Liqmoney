@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -23,9 +22,10 @@
             android:layout_height="48dp"
             android:src="@drawable/ic_baseline_person_24"
             app:civ_border_color="@android:color/white"
-            app:civ_border_width="2dp"/>
+            app:civ_border_width="2dp" />
 
         <TextView
+            android:id="@+id/profile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
@@ -39,8 +39,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
         android:layout_marginStart="7dp"
+        android:layout_marginTop="7dp"
         android:layout_marginBottom="7dp"
         android:text="@string/last_transaction"
         android:textColor="@color/black"
@@ -55,17 +55,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_marginTop="7dp"
         android:layout_height="140dp"
         android:layout_marginLeft="28dp"
+        android:layout_marginTop="7dp"
         android:layout_marginRight="28dp"
         android:background="@drawable/transaction_background_design"
+        android:padding="20dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.559"
-        android:padding="20dp">
+        app:layout_constraintVertical_bias="0.559">
 
         <TextView
             android:id="@+id/date"

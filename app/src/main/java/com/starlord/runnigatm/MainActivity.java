@@ -1,36 +1,44 @@
 package com.starlord.runnigatm;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.ImageView;
-
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.starlord.runnigatm.models.Users;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    TextView profileName;
     ImageView profileImage;
+    FirebaseFirestore db;
+    private Users user;
+    String TAG = "Main Activity";
 
-    @SuppressLint("NonConstantResourceId")
+    @SuppressLint({"NonConstantResourceId", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         profileImage = findViewById(R.id.profile_image);
+        profileName = findViewById(R.id.profile_name);
         drawerLayout = findViewById(R.id.activity_main);
         navigationView = findViewById(R.id.nv);
 
@@ -40,13 +48,29 @@ public class MainActivity extends AppCompatActivity {
             window.setStatusBarColor(getResources().getColor(R.color.blue_dark));
         }
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+
+///////////Accessing data from FireStore database ///////////////////////////////////////////////////////////////////
+        DocumentReference docRef = db.collection("users")
+                .document(Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
+
+        docRef.get().addOnSuccessListener(documentSnapshot -> {
+            user = documentSnapshot.toObject(Users.class);
+            assert user != null;
+            profileName.setText("Hello, " + user.getFirstName() + "!");
+        });
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         profileImage.setOnClickListener(v -> openDrawer());
 
+
+
+////////Navigation drawer on click listener ////////////////////////////////////////////////////////////////
         navigationView.setNavigationItemSelectedListener(item -> {
             int id = item.getItemId();
             Intent intent;
-            switch(id)
-            {
+            switch (id) {
                 case R.id.action_profile:
                     intent = new Intent(MainActivity.this, ProfileActivity.class);
                     break;
@@ -71,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         });
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     public void closeDrawer() {
