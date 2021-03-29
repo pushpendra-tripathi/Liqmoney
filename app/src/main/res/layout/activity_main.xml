@@ -29,7 +29,10 @@
             android:layout_height="match_parent"
             android:background="@drawable/drawer_design"
             app:menu="@menu/navigation_menu"
+            app:itemTextAppearance="@style/TextAppearance.AppCompat.Large"
             android:layout_gravity="start"
+            app:itemTextColor="@color/black"
+            android:paddingLeft="10dp"
             app:headerLayout="@layout/nav_header"
             android:id="@+id/nv">
 
