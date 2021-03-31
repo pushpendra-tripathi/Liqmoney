@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     TextView profileName;
-    ImageView profileImage;
+    ImageView profileImage, liquidMoney, hardMoney;
     FirebaseFirestore db;
     private Users user;
     String TAG = "Main Activity";
@@ -39,17 +39,21 @@ public class MainActivity extends AppCompatActivity {
 
         profileImage = findViewById(R.id.profile_image);
         profileName = findViewById(R.id.profile_name);
+        liquidMoney = findViewById(R.id.liquid_money);
+        hardMoney = findViewById(R.id.hard_money);
         drawerLayout = findViewById(R.id.activity_main);
         navigationView = findViewById(R.id.nv);
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
+////////For changing the color of status bar ////////////////////////////////////////////////////////////////////////
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(getResources().getColor(R.color.blue_dark));
         }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
 
 ///////////Accessing data from FireStore database ///////////////////////////////////////////////////////////////////
         DocumentReference docRef = db.collection("users")
@@ -62,8 +66,16 @@ public class MainActivity extends AppCompatActivity {
         });
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
         profileImage.setOnClickListener(v -> openDrawer());
 
+        liquidMoney.setOnClickListener(v ->{
+            //TODO
+        });
+
+        hardMoney.setOnClickListener(v ->{
+            //TODO
+        });
 
 
 ////////Navigation drawer on click listener ////////////////////////////////////////////////////////////////

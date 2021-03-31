@@ -52,4 +52,6 @@
     <string name="amount">Amount</string>
     <string name="status">Status</string>
     <string name="see_more"><u>See more...</u></string>
+    <string name="pay_to_receive_cash">Pay to Receive Cash</string>
+    <string name="enter_amount">Enter Amount</string>
 </resources>
