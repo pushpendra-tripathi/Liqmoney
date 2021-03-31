@@ -69,11 +69,11 @@ public class MainActivity extends AppCompatActivity {
 
         profileImage.setOnClickListener(v -> openDrawer());
 
-        liquidMoney.setOnClickListener(v ->{
+        liquidMoney.setOnClickListener(v -> {
             //TODO
         });
 
-        hardMoney.setOnClickListener(v ->{
+        hardMoney.setOnClickListener(v -> {
             //TODO
         });
 
